@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-with-pvc
+  namespace: test-angel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+       app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx-with-pvc
+        volumeMounts:
+        - mountPath: /test-ebs
+          name: my-pvc
+      volumes:
+      - name: my-pvc
+        persistentVolumeClaim:
+          claimName: nginx-with-pvc

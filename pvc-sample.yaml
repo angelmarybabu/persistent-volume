@@ -1,0 +1,15 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  namespace: test-angel 
+  name: nginx-with-pvc
+  labels:
+    name: nginx-with-pvc
+
+spec:
+  storageClassName: ebs-sc
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 6Gi
